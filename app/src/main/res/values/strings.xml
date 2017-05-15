@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RxBusDemo</string>
+    <string name="post_object">Post(Object)</string>
+    <string name="poststicky_object">PostSticky(Object)</string>
+    <string name="post_code_object">Post(Code,Object)</string>
+    <string name="poststicky_code_object">PostSticky(Code,Object)</string>
+</resources>

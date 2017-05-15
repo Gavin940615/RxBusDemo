@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="net.novate.rxbusdemo.MainActivity">
+
+    <Button
+        android:id="@+id/post_object"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_object"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/poststicky_object"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/poststicky_object"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/post_code_object"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/post_code_object"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/poststicky_code_object"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/poststicky_code_object"
+        android:textAllCaps="false" />
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:textSize="24sp" />
+
+</LinearLayout>
