@@ -50,7 +50,9 @@ public class RxBus {
      *
      * @param object 数据
      */
+    @SuppressWarnings("ConstantConditions")
     public void post(@NonNull Object object) {
+        if (object == null) throw new IllegalArgumentException("object is null");
         bus.onNext(object);
     }
 
@@ -59,7 +61,9 @@ public class RxBus {
      *
      * @param object 数据
      */
+    @SuppressWarnings("ConstantConditions")
     public void postSticky(@NonNull Object object) {
+        if (object == null) throw new IllegalArgumentException("object is null");
         busMap.put(object.getClass(), object);
         post(object);
     }
@@ -71,7 +75,9 @@ public class RxBus {
      * @param <T>  数据类型
      * @return 数据源
      */
+    @SuppressWarnings("ConstantConditions")
     public <T> Observable<T> toObservable(@NonNull Class<T> type) {
+        if (type == null) throw new IllegalArgumentException("type is null");
         return bus.ofType(type);
     }
 
@@ -82,7 +88,9 @@ public class RxBus {
      * @param <T>  数据类型
      * @return 数据源
      */
+    @SuppressWarnings("ConstantConditions")
     public <T> Observable<T> toObservableSticky(@NonNull final Class<T> type) {
+        if (type == null) throw new IllegalArgumentException("type is null");
         return busMap.get(type) == null ?
                 toObservable(type) :
                 toObservable(type).mergeWith(Observable.create(new ObservableOnSubscribe<T>() {
@@ -100,10 +108,10 @@ public class RxBus {
      * @param code   编号
      * @param object 数据
      */
+    @SuppressWarnings("ConstantConditions")
     public void post(int code, @NonNull Object object) {
-        Car car = new Car();
-        car.code = code;
-        car.object = object;
+        if (object == null) throw new IllegalArgumentException("object is null");
+        Car car = new Car(code, object);
         bus.onNext(car);
     }
 
@@ -113,7 +121,9 @@ public class RxBus {
      * @param code   编号
      * @param object 数据
      */
+    @SuppressWarnings("ConstantConditions")
     public void postSticky(int code, @NonNull Object object) {
+        if (object == null) throw new IllegalArgumentException("object is null");
         carMap.put(code, object);
         post(code, object);
     }
@@ -126,7 +136,9 @@ public class RxBus {
      * @param <T>  数据类型
      * @return 数据源
      */
+    @SuppressWarnings("ConstantConditions")
     public <T> Observable<T> toObservable(final int code, @NonNull Class<T> type) {
+        if (type == null) throw new IllegalArgumentException("type is null");
         return bus.ofType(Car.class)
                 .filter(new Predicate<Car>() {
                     @Override
@@ -151,7 +163,9 @@ public class RxBus {
      * @param <T>  数据类型
      * @return 数据源
      */
+    @SuppressWarnings("ConstantConditions")
     public <T> Observable<T> toObservableSticky(final int code, @NonNull final Class<T> type) {
+        if (type == null) throw new IllegalArgumentException("type is null");
         return carMap.get(code) == null ?
                 toObservable(code, type) :
                 toObservable(code, type).mergeWith(Observable.create(new ObservableOnSubscribe<T>() {
@@ -196,6 +210,11 @@ public class RxBus {
     private static class Car {
         private int code;
         private Object object;
+
+        Car(int code, Object object) {
+            this.code = code;
+            this.object = object;
+        }
     }
 
     private static class Holder {
